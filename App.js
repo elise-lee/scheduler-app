@@ -32,17 +32,16 @@ const Banner = ({title}) => (
   <Text style={styles.bannerStyle}>{title || '[loading...]'}</Text>
 );
 
-const fetchSchedule = async () => {
-  const url = "https://courses.cs.northwestern.edu/394/data/cs-courses.php"
-  const response = await fetch(url);
-  if (!response.ok) throw response;
-  const json = await response.json();
-  setSchedule(json);
-};
-
 const App = () => {
-  const [schedule, setSchedule] = useState({ title: '', courses: [] });
+  const [ schedule, setSchedule ] = useState({ title: '', courses: [] });
   useEffect(() => {
+    const fetchSchedule = async () => {
+      const url = "https://courses.cs.northwestern.edu/394/data/cs-courses.php"
+      const response = await fetch(url);
+      if (!response.ok) throw response;
+      const json = await response.json();
+      setSchedule(json);
+    };
     fetchSchedule();
   }, []);
   
