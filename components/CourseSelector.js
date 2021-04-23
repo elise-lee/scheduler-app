@@ -16,7 +16,7 @@ const CourseSelector = ({courses}) => {
           courses.map(course => (
             <Course key={course.id} course={course}
               isDisabled={hasConflict(course, selected)}
-              isSelected={selected.includes(course) ? '#004a99' : '#66b0ff'}
+              isSelected={selected.includes(course) ? true : false}
               select={toggle}
             />
           ))
