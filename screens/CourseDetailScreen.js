@@ -10,7 +10,7 @@ const Field = ({label, value}) => {
   );
 };
 
-const CourseEditScreen = ({route}) => {
+const CourseDetailScreen = ({route}) => {
   const course = route.params.course;
 
   return (
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CourseEditScreen;
+export default CourseDetailScreen;
