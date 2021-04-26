@@ -1,32 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, Text, } from 'react-native';
 import CourseList from '../components/CourseList'
-  
-const schedule = {
-  "title": "CS Courses for 2018-2019",
-  "courses": [
-    {
-      "id": "F101",
-      "title": "Computer Science: Concepts, Philosophy, and Connections",
-      "meets": "MWF 11:00-11:50"
-    },
-    {
-      "id": "F110",
-      "title": "Intro Programming for non-majors",
-      "meets": "MWF 10:00-10:50"
-    },
-    {
-      "id": "F111",
-      "title": "Fundamentals of Computer Programming I",
-      "meets": "MWF 13:00-13:50"
-    },
-    {
-      "id": "F211",
-      "title": "Fundamentals of Computer Programming II",
-      "meets": "TuTh 12:30-13:50"
-    }
-  ]
-};
+import UserContext from '../UserContext';
+import CourseEditScreen from './CourseEditScreen';
 
 const Banner = ({title}) => (
   <Text style={styles.bannerStyle}>{title || '[loading...]'}</Text>
@@ -34,8 +10,10 @@ const Banner = ({title}) => (
 
 const ScheduleScreen = ({navigation}) => {
   const [ schedule, setSchedule ] = useState({ title: '', courses: [] });
+  const user = useContext(UserContext);
+  const canEdit = user && user.role === 'admin';
   const view = (course) => {
-    navigation.navigate('CourseDetailScreen', { course });
+    navigation.navigate(canEdit ? 'CourseEditScreen' : 'CourseDetailScreen', { course });
   };
   
   useEffect(() => {
