@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import * as Yup from 'yup';
 import Form from '../components/Form'
+import firebase from '../firebase';
 
 const Field = ({label, value}) => {
   return (

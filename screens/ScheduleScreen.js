@@ -4,8 +4,6 @@ import CourseList from '../components/CourseList'
 import UserContext from '../UserContext';
 import firebase from '../firebase'
 
-const db = firebase.database().ref();
-
 const fixCourses = json => ({
   ...json,
   courses: Object.values(json.courses)
@@ -24,8 +22,9 @@ const ScheduleScreen = ({navigation}) => {
   };
   
   useEffect(() => {
+    const db = firebase.database().ref();
     db.on('value', snap => {
-      if (snap.val()) setSchedule(fixCourses(snap.val()))    ;
+      if (snap.val()) setSchedule(fixCourses(snap.val()));
     }, error => console.log(error));
     return () => { db.off('value', handleData); };
   }, []);
