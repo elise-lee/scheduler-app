@@ -27,6 +27,8 @@ const App = () => {
             component={CourseEditScreen}
             options={{ title: 'Course Editor'}} 
           />
+          <Stack.Screen name="RegisterScreen"
+            component={RegisterScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserContext.Provider>
